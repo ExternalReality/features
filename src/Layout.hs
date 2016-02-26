@@ -19,7 +19,6 @@ import           Text.Blaze.Html                             (Html,
 import           Text.Hamlet                                 (shamlet)
 
 import           Application
-import           Auth.Types                                  (toText)
 --import           User.Query                                  (userDBView)
 
 -- renderWithLayout :: Html -> Handler App (AuthManager App) ()
@@ -38,27 +37,11 @@ renderWithBaseLayout content = blaze . baseLayout $ content
 appLayout :: (Text, Text, Role) -> Html -> Html
 appLayout (fname, lname, role) content = baseLayout $ [shamlet|
 <div class="container" style="max-width: none">
-  <div class="row" style="margin-bottom: 1em">
-    #{header fullname role}
   <div class="row">
     #{content}
 |]
   where
    fullname = fname <> " " <> lname
-
-header :: Text -> Role -> Html
-header currentUserName role =  [shamlet|
- <div class="row">
-   <H5 class="two columns" style="margin-bottom: auto"> Cerebro
-   <span class="three columns offset-by-five" style="position: relative; bottom: -0.7em">Welcome, #{currentUserName}
-   <a href="/logout" class="one column offset-by-one u-pull-right" style="position: relative; bottom: -0.7em; text-decoration: none">Logout
- <hr style="margin-top: auto; margin-bottom: 1.25em">
- <div class="row">
-   <a href="/tickets/new" style="margin-bottom:auto" class="three columns offset-by-nine button u-pull-right">
-     <i class="fa fa-plus"> New Ticket
- <div class="row">
-   <H5 class="two columns" style="margin-bottom: auto">#{toText role}
-|]
 
 ticketFormJS :: Html
 ticketFormJS = preEscapedText "$(document).ready(function() {$('#due-date').datepicker({showOn: 'button', buttonText: '&#xf073;'});})"

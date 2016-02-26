@@ -19,10 +19,8 @@ Flag development
 executable features
   hs-source-dirs:      src
   main-is:             Main.hs
-  other-modules:       Application
-                     , Auth.Query
+  other-modules:       Application                     
                      , Auth.Site
-                     , Auth.Types
                      , Auth.View
                      , Layout
                      , Site
