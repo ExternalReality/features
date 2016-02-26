@@ -1,0 +1,76 @@
+name:                features
+version:             0.1.0.0
+synopsis:            A minimal feature request application
+description:         Please see README.md
+homepage:
+license:             BSD3
+license-file:        LICENSE
+author:              Eric Claude Jones
+maintainer:          http://Github.com/ExternalReality
+copyright:           2016
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+
+Flag development
+  Description: Whether to build the server in development (interpreted) mode
+  Default: False
+
+executable features
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  other-modules:       Application
+                     , Auth.Query
+                     , Auth.Site
+                     , Auth.Types
+                     , Auth.View
+                     , Layout
+
+
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , blaze-html
+                     , MonadCatchIO-transformers
+                     , bytestring
+                     , lens
+                     , mtl
+                     , shakespeare
+                     , snap
+                     , snap-core
+                     , snap-loader-static
+                     , snap-server
+                     , snaplet-postgresql-simple
+                     , snap-blaze
+                     , postgresql-simple
+                     , text
+                     , time
+                     , xmlhtml
+                     , transformers
+                     , interpolate
+
+  if flag(development)
+    build-depends:
+      snap-loader-dynamic == 0.10.*
+    cpp-options: -DDEVELOPMENT
+    ghc-options: -threaded -w
+  else
+    if impl(ghc >= 6.12.0)
+      ghc-options: -threaded -Wall -fwarn-tabs -funbox-strict-fields -O2
+                   -fno-warn-orphans -fno-warn-unused-do-bind
+    else
+      ghc-options: -threaded -Wall -fwarn-tabs -funbox-strict-fields -O2
+                   -fno-warn-orphans
+
+  default-language:    Haskell2010
+
+test-suite features-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/ExternalReality/features
