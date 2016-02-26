@@ -3,7 +3,6 @@
 
 module Ticket.View (ticketIndexTable) where
 
--- import           Data.Text       (Text)
 import           Text.Blaze.Html (Html)
 import           Text.Hamlet     (shamlet)
 
@@ -20,4 +19,12 @@ ticketIndexTable tickets = [shamlet|
       <th>
       <th>
       <th>
+    <tbody>
+      <td>
+      <td>
+      <td>
+      <td>
+      <td>
+      <td>
+      <td>
 |]

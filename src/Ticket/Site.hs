@@ -20,5 +20,3 @@ index = writeBS "Hello"
 
 routes :: [(ByteString, Handler App App ())]
 routes = [ ("/tickets/index", with auth index) ]
-
-
