@@ -34,4 +34,5 @@ database:
 test:
   override:
     - stack build features
-    - stack exec features
+    - stack exec features:
+        background: true
