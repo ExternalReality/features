@@ -1,7 +1,4 @@
 machine:
-  pre:
-    - cat /etc/os-release
-
   timezone:
     America/New_York
 
@@ -17,6 +14,9 @@ dependencies:
     - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 575159689BEFB442
     - echo 'deb http://download.fpcomplete.com/ubuntu precise main'| sudo tee /etc/apt/sources.list.d/fpco.list
     - sudo apt-get update && sudo apt-get install stack -y
+    - wget https://bintray.com/artifact/download/business/maven/flyway-commandline-3.2.1-linux-x64.tar.gz
+    - tar -xvf flyway-commandline-3.2.1-linux-x64.tar.gz
+    - export PATH={$HOME}/flyway-commandline-3.2.1:$PATH
 
   cache_directories:
     - /home/ubuntu/.stack
