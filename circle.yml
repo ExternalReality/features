@@ -27,12 +27,13 @@ dependencies:
     - bundle install:
         timeout: 180
     
-
 database:
   pre:
     - createdb features
+    - flyway migrate
 
 test:
   override:
     - stack build features
+    - stack exec features
     - rspec
