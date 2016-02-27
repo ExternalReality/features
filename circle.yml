@@ -36,3 +36,4 @@ test:
     - stack build features
     - stack exec features:
         background: true
+    - rspec
