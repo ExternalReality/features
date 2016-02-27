@@ -11,6 +11,7 @@ machine:
 
 dependencies:
   pre:
+    - sudo rm -rf /var/cache/apt/archives && sudo ln -s ~/.apt-cache /var/cache/apt/archives && mkdir -p ~/.apt-cache/partial
     - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 575159689BEFB442
     - echo 'deb http://download.fpcomplete.com/ubuntu precise main'| sudo tee /etc/apt/sources.list.d/fpco.list
     - sudo apt-get update && sudo apt-get install stack -y
@@ -19,6 +20,7 @@ dependencies:
 
   cache_directories:
     - /home/ubuntu/.stack
+    - "~/.apt-cache"
 
   override:
     - stack setup
