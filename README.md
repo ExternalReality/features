@@ -18,9 +18,10 @@
 
 #### Setup the database
 - You have postgreSQL intalled now `createdb features`
-- The application is not configured with a password so, in order to give a the
+- The application is not configured with a database password so, in order to give a the
   application and flyway access, you must:
   - go to your postgreSQL configuration and `pg_hba.conf` and set IPv4/6 local connections to `trust`
+    - this is ok for most development environments but not safe for production.
   - alternatively, you may use a password and set the password in `snaplets/postgresql-simple/devel.cfg` and in `flyway.conf`
 
 #### Setup the development environment
@@ -31,14 +32,13 @@
 
 
 #### Test Setup & Running Tests
-- For testing we use Ruby's excellent Capybara
-- install ruby using [rvm](https://rvm.io/)
+- for acceptance testing we use Ruby's excellent [Capybara](https://jnicklas.github.io/capybara/)
+- install a modern Ruby using [rvm](https://rvm.io/)
 - run `gem install bundler`
 - run `bundle install` or just `bundle` and keep an eye out for any missing system dependencies (e.g webkit)
 - to run the acceptance tests use `rspec`
 
 - To run the Haskell unit tests (TBA)
-
 
 #### Alternative Setup
 - Use the docker image of the development environment that I am going to provide.
