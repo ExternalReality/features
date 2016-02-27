@@ -19,7 +19,7 @@ dependencies:
     - sudo apt-get update && sudo apt-get install stack -y
 
   cache_directories:
-    - $HOME/.stack
+    - /home/ubuntu/.stack
 
   override:
     - stack setup
