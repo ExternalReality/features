@@ -1,6 +1,6 @@
 # features
 
-[![Stories in Ready](https://badge.waffle.io/ExternalReality/features.png?label=ready&title=Ready)](http://waffle.io/ExternalReality/features) [![Stories in In Progress](https://badge.waffle.io/ExternalReality/features.png?label=in progress&title=In Progress)](http://waffle.io/ExternalReality/features) [![Stories in Done](https://badge.waffle.io/ExternalReality/features.png?label=done&title=Done)](http://waffle.io/ExternalReality/features) [![Circle CI](https://circleci.com/gh/ExternalReality/features.svg?style=shield)](https://circleci.com/gh/ExternalReality/features)
+[![Stories in Ready](https://badge.waffle.io/ExternalReality/features.png?label=ready&title=Ready)](http://waffle.io/ExternalReality/features) [![Stories in In Progress](https://badge.waffle.io/ExternalReality/features.png?label=in progress&title=In Progress)](http://waffle.io/ExternalReality/features) [![CircleCI](https://circleci.com/gh/ExternalReality/features.svg?style=shield)](https://circleci.com/gh/ExternalReality/features)
 
 ## A simple application that manages feature requests
 
