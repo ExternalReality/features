@@ -24,7 +24,7 @@ dependencies:
 
   override:
     - stack setup
-    - stack install --only-dependencies
+    - stack install --only-dependencies --trace
     - bundle install:
         timeout: 180
     
