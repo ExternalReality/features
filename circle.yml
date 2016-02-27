@@ -22,7 +22,7 @@ dependencies:
 
   override:
     - stack setup
-    - stack install
+    - stack install --only-dependencies
     - bundle install:
         timeout: 180
     
@@ -33,7 +33,7 @@ database:
 
 test:
   override:
-    - stack build features
+    - stack build features --trace
     - stack exec features:
         background: true
     - rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
