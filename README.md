@@ -18,11 +18,12 @@
 
 #### Setup the database
 - You have postgreSQL intalled now `createdb features`
-- The application is not configured with a database password so, in order to give a the
+- The application is not configured with a database password so, in order to give the
   application and flyway access, you must:
-  - go to your postgreSQL configuration and `pg_hba.conf` and set IPv4/6 local connections to `trust`
+  - go to your postgreSQL configuration `pg_hba.conf` and set IPv4/6 local connections to `trust` rather than `md5`
     - this is ok for most development environments but not safe for production.
   - alternatively, you may use a password and set the password in `snaplets/postgresql-simple/devel.cfg` and in `flyway.conf`
+- run `flyway migrate` from the project root to migrate the database
 
 #### Setup the development environment
 - setup Haskell environment `stack setup`
