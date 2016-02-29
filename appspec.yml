@@ -8,9 +8,13 @@ files:
   - source: scripts
     destination: /home/ubuntu/scripts
 hooks:
+  BeforeInstall:
+    - location: scripts/delete_existing_files.sh
+      timeout: 3600
+      runas: ubuntu
   AfterInstall:
     - location: scripts/update_database.sh
-      timeout: 180
+      timeout: 3600
       runas: ubuntu
   ApplicationStart:
     - location: scripts/start_server.sh
