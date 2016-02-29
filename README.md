@@ -57,11 +57,11 @@ The following Spacemacs layers make it easy to work on this project:
   - auto-completion
   - spell-checking
 
-Also you can set these as directory level settings so your stack ghci repl rebuilds in dev mode:
+Also you can set the following as directory level settings so your `stack ghci` repl rebuilds the application in dev mode:
  '(haskell-compile-cabal-build-alt-command "cd %s && stack build --flag features:development")
  '(haskell-compile-cabal-build-command "cd %s && stack build --flag features:development")
  
- #### Other things
+#### Other things
  - Listen to the Tao Te Ching audio book while coding and configuring servers and stuff.
  - Use the 'deeper blue' Emacs24 theme because IMHO it calms the soul.
  
