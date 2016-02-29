@@ -4,7 +4,7 @@ require 'capybara/dsl'
 require 'capybara/webkit'
 require 'capybara/rspec'
 require 'rspec'
-
+require 'bdd'
 
 Capybara::Webkit.configure do |config|
   config.block_unknown_urls
