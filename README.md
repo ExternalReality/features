@@ -26,11 +26,11 @@
 - run `flyway migrate` from the project root to migrate the database
 
 #### Setup the development environment
+- run `cd path/to/repo` to change directories to the project root 
 - setup Haskell environment `stack setup`
-- install project dependencies `stack install`
+- install project dependencies `stack install --only-dependencies`
 - build the project in development mode so that the application updates without rebuild `stack build --flag features:development`
 - run the application with `stack exec features`
-
 
 #### Test Setup & Running Tests
 - for acceptance testing we use Ruby's excellent [Capybara](https://jnicklas.github.io/capybara/)
