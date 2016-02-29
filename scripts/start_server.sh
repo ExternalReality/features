@@ -1,1 +1,1 @@
-service features start
+service features restart
