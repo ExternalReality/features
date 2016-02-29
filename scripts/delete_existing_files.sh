@@ -3,7 +3,7 @@
 STATIC=/home/ubuntu/static
 MIGRATIONS=/home/ubuntu/migrations
 SCRIPTS=/home/ubuntu/scripts
-APP=/home/.local/bin/features
+APP=/home/ubuntu/.local/bin/features
 
 if [ -d "$STATIC" ]; then
     rm -rf $STATIC
