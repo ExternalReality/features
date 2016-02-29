@@ -35,9 +35,9 @@ database:
     - ${HOME}/flyway-3.2.1/flyway -user=`whoami` migrate
 
 test:
-  override:
+  override:2
     - stack install features
-    - cp ~/.local/bin/features ~/home/ubuntu/features 
+    - cp ~/.local/bin/features ~/features 
     - stack exec features:
         background: true
     - rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
