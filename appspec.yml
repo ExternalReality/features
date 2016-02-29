@@ -9,7 +9,7 @@ files:
     destination: /home/ubuntu/scripts
 hooks:
   BeforeInstall:
-    - location: /home/ubuntu/scripts/delete_existing_files.sh
+    - location: scripts/delete_existing_files.sh
       timeout: 3600
       runas: ubuntu
   AfterInstall:
