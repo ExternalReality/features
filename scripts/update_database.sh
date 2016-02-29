@@ -1,3 +1,3 @@
 #/bin/bash
 
-flyway migrate
+/home/ubuntu/opt/flyway/flyway migrate
