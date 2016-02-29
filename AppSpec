@@ -1,0 +1,21 @@
+os: linux
+files:
+  - source: static
+    destination: /home/ubuntu/static
+  - source: migrations
+    destination: /home/ubuntu/migrations
+  - source: scripts
+    destination: /home/ubuntu/scripts
+hooks:
+  AfterInstall:
+    - location: scripts/update_database.sh
+      timeout: 180
+      runas: ubuntu
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 3600
+      runas: root
+ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: root

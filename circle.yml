@@ -40,3 +40,9 @@ test:
         background: true
     - rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
 
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      features:
+        deployment_group: features-deployment-group
