@@ -21,11 +21,12 @@ dependencies:
   cache_directories:
     - /home/ubuntu/.stack
     - "~/.apt-cache"
+    - vendor/bundle
 
   override:
     - stack setup
     - stack install --only-dependencies
-    - bundle install:
+    - bundle install --path vendor/bundle:
         timeout: 180
     
 database:
@@ -35,7 +36,8 @@ database:
 
 test:
   override:
-    - stack build features
+    - stack install features
+    - cp ~/.local/bin/features ~/home/ubuntu/features 
     - stack exec features:
         background: true
     - rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml

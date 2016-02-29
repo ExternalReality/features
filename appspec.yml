@@ -7,6 +7,8 @@ files:
     destination: /home/ubuntu/migrations
   - source: scripts
     destination: /home/ubuntu/scripts
+  - source: features
+    destination: /home/ubuntu/.local/bin/features
 hooks:
   BeforeInstall:
     - location: scripts/delete_existing_files.sh
