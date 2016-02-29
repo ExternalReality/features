@@ -5,18 +5,18 @@ module Site
   ( app
   ) where
 
-import           Data.ByteString (ByteString)
+import           Data.ByteString                             (ByteString)
 import           Data.Monoid
 import           Snap.Snaplet
+import           Snap.Snaplet.Auth.Backends.PostgresqlSimple
 import           Snap.Snaplet.PostgresqlSimple
 import           Snap.Snaplet.Session.Backends.CookieSession
 import           Snap.Util.FileServe
-import           Snap.Snaplet.Auth.Backends.PostgresqlSimple
 
 import           Application
 
-import qualified Auth.Site as Auth
-import qualified Ticket.Site as Ticket
+import qualified Auth.Site                                   as Auth
+import qualified Ticket.Site                                 as Ticket
 
 routes :: [(ByteString, Handler App App ())]
 routes =  Auth.routes

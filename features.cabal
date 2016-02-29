@@ -24,7 +24,10 @@ executable features
                      , Auth.View
                      , Layout
                      , Site
-
+                     , Ticket.Types
+                     , Ticket.Query
+                     , Ticket.Site
+                     , Ticket.View
 
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
@@ -46,6 +49,7 @@ executable features
                      , xmlhtml
                      , transformers
                      , interpolate
+                     , time
 
   if flag(development)
     build-depends:

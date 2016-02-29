@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe "The sign on process", :type => :feature do
+RSpec.describe "Sign on process" do
   it "Feature requester can log into the application" do
     Given 'I am on the login page' do
       visit('/')
@@ -17,3 +17,4 @@ RSpec.describe "The sign on process", :type => :feature do
     end
   end
 end
+

@@ -3,11 +3,10 @@
 
 module Layout
   ( baseLayout
---  , renderWithLayout
+  , renderWithLayout
   , renderWithBaseLayout
   ) where
 
-import           Data.Monoid                                 ((<>))
 import           Data.Text
 import           Snap
 import           Snap.Blaze                                  (blaze)
@@ -21,27 +20,23 @@ import           Text.Hamlet                                 (shamlet)
 import           Application
 --import           User.Query                                  (userDBView)
 
--- renderWithLayout :: Html -> Handler App (AuthManager App) ()
--- renderWithLayout content = do
---   user <- currentUser
---   case user of
---     Nothing -> redirect "/login"
---     Just u  -> do
---       let (Just (UserId id_)) = userId u
---       [x] <- query userDBView (Only id_)
---       blaze . (appLayout x) $ content
+renderWithLayout :: Html -> Handler App (AuthManager App) ()
+renderWithLayout content = do
+  user <- currentUser
+  case user of
+    Nothing -> redirect "/login"
+    Just u  -> do
+      let l = userLogin u
+      blaze . (appLayout l) $ content
 
 renderWithBaseLayout :: Html -> Handler App (AuthManager App) ()
 renderWithBaseLayout content = blaze . baseLayout $ content
 
-appLayout :: (Text, Text, Role) -> Html -> Html
-appLayout (fname, lname, role) content = baseLayout $ [shamlet|
+appLayout :: Text -> Html -> Html
+appLayout _ content = baseLayout $ [shamlet|
 <div class="container" style="max-width: none">
-  <div class="row">
-    #{content}
+  #{content}
 |]
-  where
-   fullname = fname <> " " <> lname
 
 ticketFormJS :: Html
 ticketFormJS = preEscapedText "$(document).ready(function() {$('#due-date').datepicker({showOn: 'button', buttonText: '&#xf073;'});})"
