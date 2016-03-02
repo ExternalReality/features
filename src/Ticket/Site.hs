@@ -7,16 +7,20 @@ module Ticket.Site
   ) where
 
 import           Data.ByteString               (ByteString)
+import           Data.ByteString.Char8         (unpack)
 import           Snap.Core
 import           Snap.Snaplet
 import           Snap.Snaplet.Auth
-import           Snap.Snaplet.PostgresqlSimple (execute, query_)
+import           Snap.Snaplet.PostgresqlSimple (Only (..), execute, query,
+                                                query_)
+import           Text.Read
 
 import           Application
 import           Data.Aeson                    (decode')
 import           Layout                        (renderWithLayout)
 import           Ticket.Query                  (allClients, allProductAreas,
-                                                allTickets, createTicket)
+                                                allTickets, createTicket,
+                                                ticketById)
 import           Ticket.Types                  (Client (..), Ticket (..),
                                                 formatTargetDate)
 import           Ticket.View                   (ticketIndexView)
@@ -52,8 +56,20 @@ create = do
  where
    tenKBytes = 10 * 1000
 
+update :: Handler App (AuthManager App) ()
+update = do
+  maybeTicketIdParam <- getParam "ticketId"
+  case (maybeTicketIdParam >>= readMaybe . unpack) of
+    Nothing            -> modifyResponse $ setResponseStatus 400 "Invalid Request Parameter"
+    Just ticketIdParam -> do
+      [ticket]      <- query ticketById (Only (ticketIdParam :: Int))
+      clients       <- query_ allClients
+      productAreas  <- query_ allProductAreas
+      renderWithLayout $ ticketForm clients productAreas (Just ticket)
+
 routes :: [(ByteString, Handler App App ())]
 routes = [ ("/tickets/index", with auth index)
          , ("/tickets/new", with auth new)
          , ("/tickets/create", with auth create)
+         , ("/tickets/:ticketId/edit", with auth update)
          ]

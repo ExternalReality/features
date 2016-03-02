@@ -5,7 +5,7 @@ module Ticket.View (ticketIndexTable
                    ,ticketIndexView
                    ) where
 
-import           Data.Maybe      (fromMaybe)
+import           Data.Maybe      (fromJust, fromMaybe)
 import           Text.Blaze.Html (Html)
 import           Text.Hamlet     (shamlet)
 
@@ -47,6 +47,6 @@ ticketIndexTable tickets = [shamlet|
           <td> #{formatTargetDate $ ticketTargetDate ticket}
           <td> #{fromMaybe mempty (ticketURL ticket)}
           <td> #{show $ ticketProductArea ticket}
-          <td> <a href="#" class="button">Edit
+          <td> <a href="/tickets/#{fromJust $ ticketId ticket}/edit" class="button">Edit
           <td> <a href="#" class="button">Delete
 |]
