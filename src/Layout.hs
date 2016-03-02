@@ -52,14 +52,14 @@ baseLayout content = [shamlet|
     <script src="https://code.jquery.com/jquery-2.2.0.min.js">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.2.0/parsley.min.js">
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js">
-    <script src="/static/skeleton-tabs.js">
+    <script src="/static/prototype.js">
+    <script src="/static/form-to-obj.min.js">
     <script> #{ticketFormJS}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/prototype.css">
     <link rel="stylesheet" href="http://parsleyjs.org/src/parsley.css">
-    <link rel="stylesheet" href="/static/skeleton-tabs.css">
   <body>
     #{content}
 |]

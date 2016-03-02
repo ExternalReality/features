@@ -20,7 +20,7 @@ ticketIndexView tickets = [shamlet|
 newTicketButton :: Html
 newTicketButton = [shamlet|
   <div class='row'>
-    <a href="#" class="button two-columns">New Ticket
+    <a href="/tickets/new" class="button two-columns">New Ticket
   |]
 
 ticketIndexTable :: [Ticket] -> Html

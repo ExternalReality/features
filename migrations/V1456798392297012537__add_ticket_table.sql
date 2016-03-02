@@ -1,10 +1,8 @@
 CREATE TABLE client(
-  id SERIAL NOT NULL,
   name text NOT NULL UNIQUE
 );
 
 CREATE TABLE productArea(
-  id SERIAL NOT NULL,
   name text NOT NULL UNIQUE
 );
 
