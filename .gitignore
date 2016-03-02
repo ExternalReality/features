@@ -27,4 +27,4 @@ TAGS
 site_key.txt
 *.bak
 *.log
-*/-hi
+*.dump-hi
