@@ -1,3 +1,4 @@
+{-# LANGUAGE RecordWildCards #-}
  {-# LANGUAGE OverloadedStrings #-}
  {-# LANGUAGE QuasiQuotes       #-}
 
@@ -11,6 +12,8 @@ import Data.Text (Text, unpack)
 import Data.Time.Calendar (Day)
 import Data.Time.Format
 import Database.PostgreSQL.Simple.FromRow
+import Database.PostgreSQL.Simple.ToField
+import Database.PostgreSQL.Simple.ToRow
 import Data.Aeson
 
 data Client = Client {clientName :: Text}
@@ -21,6 +24,7 @@ instance FromRow Client where
 
 instance FromJSON Client where
   parseJSON (String s) =  return $ Client s
+  parseJSON _          = fail "Cannot parse client"
 
 data ProductArea = Policies | Billing | Claims | Reports
   deriving (Show, Eq, Read)
@@ -30,6 +34,7 @@ instance FromRow ProductArea where
 
 instance FromJSON ProductArea where
    parseJSON (String s) = return $ read (unpack s)
+   parseJSON _          = fail "Cannot parse productArea"
 
 data Ticket = Ticket { ticketId             :: Maybe Int
                      , ticketTitle          :: Text
@@ -51,8 +56,19 @@ instance FromRow Ticket where
                    <*> field
                    <*> (read <$> field)
 
+instance ToRow Ticket where
+  toRow Ticket{..} = [ toField ticketTitle
+                     , toField ticketDescription
+                     , toField (clientName ticketClient)
+                     , toField ticketClientPriority
+                     , toField ticketTargetDate
+                     , toField ticketURL
+                     , toField (show ticketProductArea)
+                     , toField ticketId
+                     ]
+
 instance FromJSON Ticket where
-  parseJSON v@(Object o) = Ticket <$>
+  parseJSON (Object o) = Ticket <$>
                          o .:? "ticketId" <*>
                          o .: "title" <*>
                          o .: "description" <*>
