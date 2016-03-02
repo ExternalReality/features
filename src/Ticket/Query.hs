@@ -1,11 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
- {-# LANGUAGE QuasiQuotes      #-}
- {-# LANGUAGE RecordWildCards  #-}
+{-# LANGUAGE QuasiQuotes       #-}
+{-# LANGUAGE RecordWildCards   #-}
 
 module Ticket.Query(allTickets
                    ,allClients
                    ,allProductAreas
                    ,createTicket
+                   ,ticketById
                    ) where
 
 import           Database.PostgreSQL.Simple       (Query)
@@ -24,4 +25,7 @@ createTicket :: Query
 createTicket = [sql|
   INSERT INTO ticket (title, description, client, priority, targetDate, ticketURL, productArea)
   VALUES (?,?,?,(SELECT COUNT(*) + 1 FROM ticket WHERE client = ?),?,?,?)
- |]
+|]
+
+ticketById :: Query
+ticketById = [sql| SELECT * FROM ticket WHERE id = ? |]

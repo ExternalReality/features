@@ -25,7 +25,10 @@ ticketForm clients productAreas maybeTicket = [shamlet|
    <label for="client">Client
    <select id="client" name="client">
      $forall client <- clients
-       <option value=#{clientName client}>#{clientName client}
+       $if (Just (clientName client) == ((clientName . ticketClient) <$> maybeTicket))
+          <option value=#{clientName client} selected>#{clientName client}
+       $else
+          <option value=#{clientName client}>#{clientName client}
 
    <input type="text" name="clientPriority" id="clientPriority" value=#{fromMaybe 0 ((ticketClientPriority) <$> maybeTicket)} hidden>
 
@@ -38,8 +41,10 @@ ticketForm clients productAreas maybeTicket = [shamlet|
    <label for="productArea">ProductArea
    <select type="text" name="productArea" id="productArea">
      $forall productArea <- productAreas
-       <option value=#{show productArea}>#{show productArea}
-
+        $if (Just productArea == (ticketProductArea <$> maybeTicket))
+          <option value=#{show productArea} selected>#{show productArea}
+       $else
+          <option value=#{show productArea}>#{show productArea}
    <br>
    <input type="submit" value="Submit">
 |]
