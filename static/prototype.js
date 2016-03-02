@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $(function() { $( "#targetDate" ).datepicker(); });
   $("#ticketForm").submit(function( event ) {
      var obj = formToObj(document.querySelector("#ticketForm"));
      var postURL = obj.ticketId === "0" ? "/tickets/create" : "/tickets/update";

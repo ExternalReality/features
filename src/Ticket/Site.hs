@@ -20,7 +20,8 @@ import           Data.Aeson                    (decode')
 import           Layout                        (renderWithLayout)
 import           Ticket.Query                  (allClients, allProductAreas,
                                                 allTickets, createTicket,
-                                                ticketById, updateTicket)
+                                                deleteTicket, ticketById,
+                                                updateTicket)
 import           Ticket.Types                  (Client (..), Ticket (..),
                                                 formatTargetDate)
 import           Ticket.View                   (ticketIndexView)
@@ -63,8 +64,8 @@ update = do
   case maybeTicket of
     Nothing           -> modifyResponse $ setResponseStatus 400 "Bad Data"
     Just ticket -> do
-      execute updateTicket ticket
-      modifyResponse $ setResponseStatus 200 "Successfully Updated Ticket"
+       execute updateTicket ticket
+       modifyResponse $ setResponseStatus 200 "Successfully Updated Ticket"
   where
     tenKBytes = 10 * 1000
 
@@ -79,10 +80,20 @@ edit = do
       productAreas  <- query_ allProductAreas
       renderWithLayout $ ticketForm clients productAreas (Just ticket)
 
+delete :: Handler App (AuthManager App) ()
+delete = do
+  maybeTicketIdParam <- getParam "ticketId"
+  case (maybeTicketIdParam >>= readMaybe . unpack) of
+   Nothing      -> modifyResponse $ setResponseStatus 400 "Invalid Request Parameter"
+   Just ticketId -> do
+    execute deleteTicket (Only (ticketId :: Int))
+    redirect "/tickets/index"
+
 routes :: [(ByteString, Handler App App ())]
 routes = [ ("/tickets/index", with auth index)
          , ("/tickets/new", with auth new)
          , ("/tickets/create", with auth create)
          , ("/tickets/:ticketId/edit", with auth edit)
          , ("/tickets/update", with auth update)
+         , ("/tickets/:ticketId/delete", with auth delete)
          ]

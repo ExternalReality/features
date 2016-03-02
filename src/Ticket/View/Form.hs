@@ -33,7 +33,7 @@ ticketForm clients productAreas maybeTicket = [shamlet|
    <input type="text" name="clientPriority" id="clientPriority" value=#{fromMaybe 0 ((ticketClientPriority) <$> maybeTicket)} hidden>
 
    <label for="targetDate">Target Date
-   <input type="text" name="targetDate" id="targetDate" value=#{fromMaybe mempty ((formatTargetDate . ticketTargetDate) <$> maybeTicket)} required>
+   <input type="text" data-date-format="MM/DD/YYYY" placeholder="MM/DD/YY" name="targetDate" id="targetDate" value=#{fromMaybe mempty ((formatTargetDate . ticketTargetDate) <$> maybeTicket)} readonly required>
 
    <label for="url">URL
    <input type="text" data-parsley-type="url" name="url" id="url" value=#{fromMaybe mempty (join (ticketURL <$> maybeTicket))}>

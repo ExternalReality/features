@@ -48,5 +48,5 @@ ticketIndexTable tickets = [shamlet|
           <td> #{fromMaybe mempty (ticketURL ticket)}
           <td> #{show $ ticketProductArea ticket}
           <td> <a href="/tickets/#{fromJust $ ticketId ticket}/edit" class="button">Edit
-          <td> <a href="#" class="button">Delete
+          <td> <a href="/tickets/#{fromJust $ ticketId ticket}/delete" class="button">Delete
 |]
