@@ -80,9 +80,9 @@ instance FromJSON Ticket where
 
 instance FromJSON Day where
   parseJSON = withText "Day" $ \t ->
-    case parseTime defaultTimeLocale "%x" (unpack t) of
+    case parseTime defaultTimeLocale "%m/%d/%Y" (unpack t) of
       Just d -> pure d
       _      -> fail "could not parse date"
 
 formatTargetDate :: Day -> String
-formatTargetDate day = formatTime defaultTimeLocale "%x" day
+formatTargetDate day = formatTime defaultTimeLocale "%m/%d/%Y" day
